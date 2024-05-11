@@ -1,13 +1,6 @@
 "use client";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
-import { useUser } from "@auth0/nextjs-auth0/client";
-
-export default function Home() {
-  const { user } = useUser();
-  return (
-    <>
-      <h2>{user?.name}</h2>
-      <a href="/api/auth/login">Login</a>
-    </>
-  );
-}
+export default withPageAuthRequired(async function Products() {
+  return <h2>user is authenticated</h2>;
+});
